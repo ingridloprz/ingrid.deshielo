@@ -716,9 +716,35 @@ if (document.body.classList.contains('on-explorer')) /* Deshielo · interfaz.htm
     const badge = $('#badge');
     badge.hidden = !(d.partial || d.gaps.length);
     badge.classList.toggle('warn', !d.partial && d.gaps.length > 0);
-    if (d.partial) badge.textContent = `Promedio parcial · hasta ${fmtDate(DATA.lastRecord)}`;
+    badge.classList.toggle('live', !!(d.partial && live));
+    if (d.partial && live) badge.textContent = `En vivo · promedio al ${fmtDate(DATA.lastRecord)} · último día: ${fmt(live.value)} M km²`;
+    else if (d.partial) badge.textContent = `Promedio parcial · hasta ${fmtDate(DATA.lastRecord)}`;
     else if (d.gaps.length) badge.textContent = `Registros incompletos · ${d.records} días`;
   }
+  /* ---------- Año en curso en vivo ----------
+     El NSIDC publica cada día la extensión del hielo. Al abrir la página (y cada 30 minutos)
+     se pide el año en curso a su servicio público; si no responde, se usa el dato guardado. */
+  const LIVE_URL = `https://nsidc.org/api/seaiceservice/extent/north/filled_averaged_data/${LAST}?index=doy`;
+  let live = null;
+  async function refreshLive() {
+    try {
+      const res = await fetch(LIVE_URL, { cache: 'no-store' });
+      if (!res.ok) return;
+      const json = await res.json();
+      const days = Object.keys(json).map(Number).filter(k => typeof json[k] === 'number').sort((a, b) => a - b);
+      const d = byYear.get(LAST);
+      if (!days.length || !d || !d.partial) return;
+      const lastDoy = days[days.length - 1];
+      d.extent = Math.round(days.reduce((sum, k) => sum + json[k], 0) / days.length * 1000) / 1000;
+      d.records = days.length;
+      DATA.lastRecord = new Date(Date.UTC(LAST, 0, lastDoy)).toISOString().slice(0, 10);
+      live = { value: json[lastDoy] };
+      if (year === LAST) setYear(LAST);
+    } catch (e) { /* sin conexión: se queda el dato guardado */ }
+  }
+  refreshLive();
+  setInterval(refreshLive, 30 * 60 * 1000);
+
   track.setAttribute('aria-valuemin', FIRST);
   track.setAttribute('aria-valuemax', LAST);
 

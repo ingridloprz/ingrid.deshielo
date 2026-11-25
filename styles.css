@@ -335,3 +335,7 @@ h1,h2,.tl-end,.tl-pill,.metric-foot b{font-family:'DM Sans',sans-serif}
 .intro h1.two-lines .h-row{display:flex;align-items:center;gap:.22em;margin-top:.08em}
 .intro h1.two-lines .h-row .h-line{display:inline-block}
 .intro h1.two-lines .h-row .glass-pill{margin-top:0}
+/* Explorar datos: el año en curso se actualiza en vivo desde el NSIDC */
+.metric-badge.live{display:inline-flex;align-items:center;gap:8px}
+.metric-badge.live::before{content:"";width:7px;height:7px;border-radius:50%;background:#7dffb0;box-shadow:0 0 0 0 rgba(125,255,176,.7);animation:live-pulse 1.8s ease-out infinite;flex:none}
+@keyframes live-pulse{0%{box-shadow:0 0 0 0 rgba(125,255,176,.7)}100%{box-shadow:0 0 0 9px rgba(125,255,176,0)}}

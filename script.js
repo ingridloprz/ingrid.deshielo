@@ -717,7 +717,7 @@ if (document.body.classList.contains('on-explorer')) /* Deshielo · interfaz.htm
     badge.hidden = !(d.partial || d.gaps.length);
     badge.classList.toggle('warn', !d.partial && d.gaps.length > 0);
     badge.classList.toggle('live', !!(d.partial && live));
-    if (d.partial && live) badge.textContent = `En vivo · promedio al ${fmtDate(DATA.lastRecord)} · último día: ${fmt(live.value)} M km²`;
+    if (d.partial && live) badge.textContent = `En vivo · datos al ${fmtDate(DATA.lastRecord)}`;
     else if (d.partial) badge.textContent = `Promedio parcial · hasta ${fmtDate(DATA.lastRecord)}`;
     else if (d.gaps.length) badge.textContent = `Registros incompletos · ${d.records} días`;
   }

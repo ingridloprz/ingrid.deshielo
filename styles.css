@@ -339,3 +339,9 @@ h1,h2,.tl-end,.tl-pill,.metric-foot b{font-family:'DM Sans',sans-serif}
 .metric-badge.live{display:inline-flex;align-items:center;gap:8px}
 .metric-badge.live::before{content:"";width:7px;height:7px;border-radius:50%;background:#7dffb0;box-shadow:0 0 0 0 rgba(125,255,176,.7);animation:live-pulse 1.8s ease-out infinite;flex:none}
 @keyframes live-pulse{0%{box-shadow:0 0 0 0 rgba(125,255,176,.7)}100%{box-shadow:0 0 0 9px rgba(125,255,176,0)}}
+.tl-end.is-live{cursor:pointer;position:relative}
+.tl-end.is-live::after{content:"EN VIVO";position:absolute;top:calc(100% + 4px);right:0;display:flex;align-items:center;gap:6px;white-space:nowrap;
+  font:500 9px 'DM Mono',monospace;letter-spacing:.16em;color:#bfffd8;padding-left:13px;
+  background:radial-gradient(circle at 3.5px 50%,#7dffb0 3.5px,transparent 4px) no-repeat;animation:live-blink 1.8s ease-in-out infinite}
+@keyframes live-blink{50%{opacity:.45}}
+@media (max-width:760px){.tl-end.is-live::after{top:auto;bottom:calc(100% + 4px)}}

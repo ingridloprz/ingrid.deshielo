@@ -739,6 +739,11 @@ if (document.body.classList.contains('on-explorer')) /* Deshielo · interfaz.htm
       d.records = days.length;
       DATA.lastRecord = new Date(Date.UTC(LAST, 0, lastDoy)).toISOString().slice(0, 10);
       live = { value: json[lastDoy] };
+      document.querySelectorAll('.timeline .js-last').forEach(el => {
+        el.classList.add('is-live');
+        el.title = `En vivo: datos del NSIDC al ${fmtDate(DATA.lastRecord)}`;
+        if (!el.dataset.liveClick) { el.dataset.liveClick = '1'; el.addEventListener('click', () => { stopPlay(); setYear(LAST); }); }
+      });
       if (year === LAST) setYear(LAST);
     } catch (e) { /* sin conexión: se queda el dato guardado */ }
   }

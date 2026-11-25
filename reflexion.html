@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a2559">
+  <title>Deshielo — reflexión</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body class="on-reflection">
+  <header class="topbar">
+    <span class="topbar-line" aria-hidden="true"></span>
+    <nav aria-label="Navegación principal">
+      <a class="nav-link" href="index.html">INICIO</a>
+      <a class="nav-link" href="interfaz.html">EXPLORAR DATOS</a>
+      <a class="nav-link active" href="reflexion.html" aria-current="page">REFLEXIÓN</a>
+    </nav>
+  </header>
+
+  <main class="screen reflection" aria-labelledby="reflection-title">
+    <div class="reflection-inner">
+      <h1 id="reflection-title"><span class="h-line">¿Cuánto hielo</span><span class="glass-pill"><em>nos queda?</em></span></h1>
+      <p class="lede">El deshielo del Ártico no es solo la pérdida de hielo, sino la <strong>transformación de un ecosistema clave para el planeta.</strong></p>
+      <p class="lede">Una metáfora, como una madeja que se deshace, puede <strong>convertir datos complejos en algo cercano</strong> y ayudarnos a comprender su fragilidad.</p>
+      <span class="short-rule" aria-hidden="true"></span>
+      <a class="button outline" href="interfaz.html">VOLVER A EXPLORAR <span aria-hidden="true">→</span></a>
+    </div>
+    <figure class="reflection-art" aria-labelledby="reflection-caption">
+      <div class="reflection-stage" id="reflection-stage">
+        <div class="reflection-ghost" id="reflection-ghost" aria-hidden="true"></div>
+        <div class="reflection-readout" id="reflection-readout">
+          <span class="readout-label">EXTENSIÓN DEL HIELO MARINO</span>
+          <span class="readout-value js-ref-extent">—</span>
+          <span class="readout-unit">millones de km²</span>
+          <span class="readout-year">en <span class="js-ref-year">—</span></span>
+          <span class="readout-arrow" aria-hidden="true">▼</span>
+        </div>
+        <div class="intro-shadow" id="reflection-shadow" aria-hidden="true"></div>
+        <canvas id="reflection-yarn" aria-hidden="true"></canvas>
+      </div>
+      <figcaption id="reflection-caption">El contorno de referencia es <span class="js-max-year">—</span>,<br>cuando la bola estaba completa.</figcaption>
+    </figure>
+    <svg class="reflection-wave" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 120 C 260 150, 420 40, 720 60 S 1180 140, 1440 70" fill="none" stroke="rgba(150,210,255,.55)" stroke-width="1.5"/>
+      <path d="M0 160 L0 120 C 260 150, 420 40, 720 60 S 1180 140, 1440 70 L1440 160 Z" fill="url(#waveFill)"/>
+      <defs><linearGradient id="waveFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(120,190,255,.18)"/><stop offset="1" stop-color="rgba(120,190,255,0)"/></linearGradient></defs>
+    </svg>
+    <div class="screen-count">03 <span>—</span> 03</div>
+  </main>
+
+</body>
+</html>

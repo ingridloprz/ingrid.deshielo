@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a2559">
+  <title>Deshielo — explorar datos</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body class="on-explorer">
+  <header class="topbar">
+    <span class="topbar-line" aria-hidden="true"></span>
+    <nav aria-label="Navegación principal">
+      <a class="nav-link" href="index.html">INICIO</a>
+      <a class="nav-link active" href="interfaz.html" aria-current="page">EXPLORAR DATOS</a>
+      <a class="nav-link" href="reflexion.html">REFLEXIÓN</a>
+    </nav>
+  </header>
+
+  <main class="screen explorer" id="explorar" aria-labelledby="explore-title">
+    <div class="halo" id="halo" aria-hidden="true"></div>
+    <canvas id="yarn" aria-hidden="true"></canvas>
+    <canvas id="overlay" aria-hidden="true"></canvas>
+
+    <div class="explore-copy">
+      <p class="kicker">LAS</p>
+      <h1 id="explore-title"><span class="big">memorias</span><span class="big">del <span class="glass-pill"><em>hielo</em></span></span></h1>
+      <span class="short-rule" aria-hidden="true"></span>
+      <p class="spaced">Explora cómo ha cambiado la extensión del hielo marino del Ártico desde <span class="js-first">1979</span>.</p>
+      <button class="button outline" id="play" aria-pressed="false"><span class="play-label">REPRODUCIR EVOLUCIÓN</span> <span class="play-icon" aria-hidden="true">▶</span></button>
+    </div>
+
+    <div class="ball-slot" id="ball-slot" aria-hidden="true"></div>
+
+    <div class="metric" id="metric" aria-live="polite">
+      <span class="metric-label">EXTENSIÓN MEDIA DEL HIELO</span>
+      <div class="metric-value"><strong id="extent">—</strong><span class="unit">millones<br>de km²</span></div>
+      <span class="metric-rule" aria-hidden="true"></span>
+      <span class="metric-foot">AÑO SELECCIONADO: <b id="selected-year">—</b></span>
+      <span class="metric-delta" id="delta"></span>
+      <span class="metric-badge" id="badge" hidden></span>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <span class="tl-end js-first">1979</span>
+      <div class="tl-track" id="tl-track" role="slider" tabindex="0" aria-label="Año seleccionado" aria-orientation="vertical">
+        <div class="tl-ticks" id="tl-ticks"></div>
+        <div class="tl-knob" id="tl-knob"><span class="tl-pill" id="tl-pill">—</span></div>
+      </div>
+      <span class="tl-end js-last">2026</span>
+    </div>
+
+    <a class="next-link" href="reflexion.html">IR A LA REFLEXIÓN <span aria-hidden="true">→</span></a>
+    <div class="screen-count">02 <span>—</span> 03</div>
+  </main>
+
+</body>
+</html>

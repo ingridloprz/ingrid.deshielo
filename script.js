@@ -670,7 +670,7 @@ if (document.body.classList.contains('on-explorer')) /* Deshielo · interfaz.htm
   }
   track.addEventListener('keydown', onKey);
   document.addEventListener('keydown', e => {
-    if (document.activeElement === track || dialog.open) return;
+    if (document.activeElement === track) return;
     if (!e.key.startsWith('Arrow') && /^(INPUT|TEXTAREA|SELECT|BUTTON|A)$/.test(document.activeElement?.tagName)) return;
     onKey(e);
   });

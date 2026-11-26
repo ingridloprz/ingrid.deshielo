@@ -345,3 +345,11 @@ h1,h2,.tl-end,.tl-pill,.metric-foot b{font-family:'DM Sans',sans-serif}
   background:radial-gradient(circle at 3.5px 50%,#7dffb0 3.5px,transparent 4px) no-repeat;animation:live-blink 1.8s ease-in-out infinite}
 @keyframes live-blink{50%{opacity:.45}}
 @media (max-width:760px){.tl-end.is-live::after{top:auto;bottom:calc(100% + 4px)}}
+/* Explorar datos: selector «IR AL AÑO» en lugar de «Reproducir evolución» */
+.year-picker{position:relative;gap:14px}
+.year-picker select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,.14);border:1px solid rgba(220,242,255,.55);border-radius:999px;
+  color:#fff;font:600 15px 'DM Sans',sans-serif;letter-spacing:.02em;padding:5px 30px 5px 14px;cursor:pointer;outline:none}
+.year-picker select:focus-visible{box-shadow:0 0 0 3px rgba(170,220,255,.55)}
+.year-picker select option{color:#0a2559;background:#fff}
+.year-picker-icon{position:absolute;right:38px;pointer-events:none;font-size:12px}
+@media (max-width:760px){.year-picker-icon{right:32px}}

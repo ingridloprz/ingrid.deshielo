@@ -675,24 +675,28 @@ if (document.body.classList.contains('on-explorer')) /* Deshielo · interfaz.htm
     onKey(e);
   });
 
-  /* ---------- Reproducción automática ---------- */
-  const playBtn = $('#play');
+  /* ---------- Reproducción automática ----------
+     Al abrir la sección, la evolución corre sola de 1979 al año en curso.
+     Se detiene en cuanto la persona elige un año (selector, línea del tiempo o teclado). */
   let playTimer = null;
   function stopPlay() {
     if (!playTimer) return;
     clearInterval(playTimer); playTimer = null;
-    playBtn.setAttribute('aria-pressed', 'false');
-    playBtn.querySelector('.play-label').textContent = 'REPRODUCIR EVOLUCIÓN';
-    playBtn.querySelector('.play-icon').textContent = '▶';
   }
-  playBtn.addEventListener('click', () => {
-    if (playTimer) return stopPlay();
-    if (year >= LAST) setYear(FIRST);
-    playBtn.setAttribute('aria-pressed', 'true');
-    playBtn.querySelector('.play-label').textContent = 'PAUSAR';
-    playBtn.querySelector('.play-icon').textContent = '❚❚';
+  function startPlay() {
+    stopPlay();
+    setYear(FIRST);
     playTimer = setInterval(() => { if (year >= LAST) stopPlay(); else setYear(year + 1); }, 450);
-  });
+  }
+
+  /* ---------- Selector de año ---------- */
+  const yearSelect = $('#year-select');
+  for (let y = FIRST; y <= LAST; y++) {
+    const o = document.createElement('option');
+    o.value = y; o.textContent = y;
+    yearSelect.append(o);
+  }
+  yearSelect.addEventListener('change', () => { stopPlay(); setYear(Number(yearSelect.value)); });
 
   /* ---------- Estado del año seleccionado ---------- */
   let year = FIRST;
@@ -705,6 +709,7 @@ if (document.body.classList.contains('on-explorer')) /* Deshielo · interfaz.htm
     if (reduceMotion) shown = target;
     $('#extent').textContent = fmt(d.extent);
     $('#selected-year').textContent = year;
+    const sel = document.querySelector('#year-select'); if (sel) sel.value = year;
     pill.textContent = year;
     document.querySelectorAll('.timeline .js-first').forEach(el => el.classList.toggle('covered', year - FIRST < 3));
     document.querySelectorAll('.timeline .js-last').forEach(el => el.classList.toggle('covered', LAST - year < 3));
@@ -886,6 +891,8 @@ if (document.body.classList.contains('on-explorer')) /* Deshielo · interfaz.htm
   applySky(skyAt(changeTone(shown)));
   layout();
   requestAnimationFrame(frame);
+  if (reduceMotion) setYear(LAST);
+  else setTimeout(() => { if (year === FIRST && !playTimer) startPlay(); }, 900);
 })();
 
 /* ===== reflexion.js ===== */
